@@ -39,7 +39,6 @@ p {
   padding: 15px 20px;
   margin: 0;
   background-color: var(--black);
-  border-bottom: 1px solid #ccc;
   position: relative;
 }
 
@@ -87,9 +86,9 @@ p {
   position: absolute;
   top: 100%;
   left: 0;
+  z-index: 4;
   width: 100%;
   background-color: white;
-  border-top: 1px solid #ddd;
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.8s ease-out;
@@ -124,13 +123,32 @@ p {
 /* -------HERO SECTION--------- */
 
   .hero {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 2rem;
-    margin-top: 0rem;
-  }
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-image: url(./images/organization.jpg);
+  background-size: cover;
+  background-position: center;
+  text-align: center;
+  padding: 4rem 2rem;
+  margin-top: 0;
+  z-index: 1;
+  color: white; /* optional: makes text pop */
+  overflow: hidden;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* adjust opacity here */
+  z-index: -1;
+}
+
 
   :root {
   --sage-green: #c4d9bc;
@@ -182,8 +200,7 @@ p {
   .header-text {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    margin-bottom: 2rem;
+    align-items: center;;
     padding: 2.2rem;
     text-align: center;
   }
@@ -201,6 +218,7 @@ p {
     width: 250px;
     padding: 1.5rem;
     border-radius: 8px;
+    border: var(--black) solid 2px;
 
   }
 
@@ -239,80 +257,108 @@ p {
   }
 
 
-  /*---------MEET THE TEAM SECTION----------- */
+/* -----ABOUT US SECTION -------- */
+
+  .about-us-section {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .about-img {
+    padding: 2rem;
+  }
+
+  .about-img img {
+    border-radius: 10px;
+  }
 
 
 
 
-  /* --------- WHY CHOOSE US SECTION------------ */
-  .why-choose-us {
-  background: url('./images/black_joy.jpg') center/cover no-repeat;
-  padding: 2rem 2rem;
-  color: white;
-  position: relative;
-}
 
-.why-choose-us .overlay {
-  background-color: rgba(0, 0, 0, 0.4);
-  padding: 4rem 2rem;
-  border-radius: 12px;
-  margin: 0 auto;
+/* --------TESTIMONIALS SECTION ----------- */
+.testimonials-section {
+  padding: 0rem 2rem;
   text-align: center;
+  background-color: var(--white);
+  margin-bottom: 5rem;
 }
 
-.subheading {
-  font-size: 1.2rem;
-  font-style: italic;
-  color: #f5f5f5;
-  margin-bottom: 1rem;
-}
-
-.subheading .highlight {
-  color: var(--gold); /* or #d4aa00 if you're not using variables */
-  font-weight: bold;
-}
-
-.why-choose-us h2 {
-  font-size: 2.5rem;
+.testimonials-section h1 {
+  font-size: 2rem;
   margin-bottom: 2rem;
+  line-height: 3rem;
+  color: var(--black);
 }
 
-.why-cards {
+.grey-span {
+  font-size: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.testimonial-cards {
   display: flex;
-  justify-content: center;
   gap: 2rem;
+  justify-content: center;
   flex-wrap: wrap;
 }
 
-.why-card {
+.testimonial-card {
   background-color: white;
-  color: #111;
   padding: 2rem;
+  width: 260px;
   border-radius: 10px;
-  width: 280px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  text-align: center;
+  position: relative;
 }
 
-.why-card img {
-  height: 40px;
+.quote-icon {
+  height: auto;
+  width: 5rem;
   margin-bottom: 1rem;
 }
 
-.why-card h4 {
-  font-size: 1.1rem;
+
+.testimonial-card p {
+  font-size: 1.2rem;
+  color: #444;
+  margin-bottom: 1.2rem;
+  line-height: 1.5;
+}
+
+.profile {
+  position: relative;
+  display: inline-block;
   margin-bottom: 0.5rem;
 }
 
-.why-card p {
-  font-size: 0.95rem;
-  color:var(--dark-grey);
+.profile img {
+  width: 10rem;
+  height: auto;
+  object-fit: cover;
+  border-radius: 50%;
 }
 
 
-.span-gold {
-  color: var(--gold);
+.name {
+  font-style: italic;
+  font-size: 0.9rem;
+  color: var(--black);
 }
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -450,10 +496,18 @@ p {
   color: #666;
 }
 
+/* BUTTONS SECTION */
 
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+}
 
-
-
+.btn-sage-green {
+  margin: 0;
+}
 
 
 
@@ -490,10 +544,60 @@ p {
 }
 
 /* Small tablets (e.g., iPads in portrait) */
+
 @media (min-width: 481px) {
     .hero-text  {
       max-width: 70%;
     }
+
+    .hero-text h1 {
+        font-size: 2.2rem;
+    }
+
+    .hero-text p {
+        font-size: 1.2rem;
+    }
+
+    .about1-text h1 {
+        font-size: 2.2rem;
+        margin-top: 1.5rem;
+        line-height: 3rem;
+    }
+
+    .about1-text h4 {
+        font-size: 1.2rem;
+        margin-top: 2rem;
+    }
+
+    .about1-text p {
+        font-size: 1.2rem;
+        line-height: 2.5rem;
+    }
+
+    .header-text h4 {
+        font-size: 1.5rem;
+    }
+
+    .header-text h1 {
+        font-size: 2.5rem;
+        margin-bottom: 2rem;
+        line-height: 3rem;
+    }
+
+    .card1 img {
+    height: auto;
+    width: 5rem;
+
+  }
+
+  .card1 h3 {
+    font-size: 1.8rem;
+  }
+
+  .card1 p {
+    font-size: 1.2rem;
+    line-height: 2.5rem;
+  }
 }
 
 /* Large tablets to small desktops */
@@ -507,12 +611,18 @@ p {
   }
 
   .hero-text {
-    max-width: 40%;
+    max-width: 60%;
+    padding: 2rem;
+    text-align: center;
   
   }
 
   .hero-text h1 {
-    font-size: 2rem;
+    font-size: 2.5rem;
+  }
+
+  .hero-text p {
+    font-size: 1.2rem;
   }
 
   .hero-img img {
@@ -531,16 +641,52 @@ p {
     margin-bottom: 1.1rem;
   }
 
-
-  .contact-text h2 {
-    font-size: 2.8rem;
-    line-height: 3.2rem;
+.card1 img {
+    height: auto;
+    width: 5rem;
   }
 
-  .contact-text p {
-    font-size: 1.3rem;
-    line-height: 3.2rem;
+  .card1 h3 {
+    font-size: 1.8rem;
   }
+
+  .card1 p {
+    font-size: 1.5rem;
+    line-height: 2.5rem;
+  }
+
+  .about1-text {
+    padding: 2rem;
+  }
+
+  .about1-text h1 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .about1-text h4 {
+    font-size:1.5rem;
+  }
+
+  .about1-text p {
+    font-size: 1.2rem;
+    line-height: 2rem;
+  }
+
+  .card1 img {
+    height: auto;
+    width: 5rem;
+  }
+
+  .card1 h3 {
+    font-size: 1.5rem;
+  }
+
+  .card1 p {
+    font-size: 1.1rem;
+  }
+
+  
 
 
 }
@@ -548,10 +694,19 @@ p {
 /* Desktops and above */
 @media (min-width: 981px) {
   
+  .hero {
+    height:  60vh;
+  }
+
   .navbar ul li a {
     font-size: 1.3rem;
   }
-  
+
+    .hero-text {
+      margin: 0;
+      padding: 0;
+    }
+
   .hero-text h1 {
     font-size: 2.8rem;
   }
@@ -571,6 +726,26 @@ p {
     width: 10rem;
   }
 
+  .about1 {
+    display: flex;
+    justify-content: center;
+    
+  }
+
+  .about1-text {
+    text-align: left;
+    max-width: 35rem;
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .testimonial-cards {
+    gap: 10rem  ;
+  }
+
 }
 
 /* Big desktops / high-res displays */
@@ -587,8 +762,8 @@ p {
   }
   
   .hero-text {
-    max-width: 30%;
-    margin-right: 10rem;
+    max-width: 45%;
+
   }
 
   .hero-text h1 {
@@ -596,7 +771,7 @@ p {
   }
 
   .hero-text p {
-    font-size: 2rem;
+    font-size: 1.8rem;
     line-height: 4rem;
   }
 
@@ -605,61 +780,66 @@ p {
     width: 40rem;
   }
 
-  a.btn-sage-green {
-    font-size: 1.5rem;
-    padding: 1.2rem;
+  .header-text h1 {
+    font-size: 3rem;
+  }
+
+  .gold-span {
+    color: var(--gold);
+  }
+
+
+ .about1 {
+    display: flex;
+  }
+
+  .about1-text {
+    text-align: left;
+    max-width: 80rem;
+  }
+
+  .about1-text h1 {
+    font-size: rem;
+    margin-bottom: 2rem;
+  }
+
+  .about1-text h4 {
+    font-size:1.8rem;
+  }
+
+  .about1-text p {
+    font-size: 1.8rem;
+    line-height: 3.2rem;
   }
 
   .container1 {
-    gap: 10rem;
+    gap: 15rem;
   }
 
-  .card1 img {
+  .container1 img {
     height: auto;
-    width: 5rem;
+    width: 8rem;
   }
 
   .card1 h3 {
-    font-size: 2.2rem;
-    line-height: 3rem;
+    font-size: 2rem;
   }
 
   .card1 p {
+    font-size: 1.3rem;
+  }
+
+  .btn-sage-green, .btn-outline {
+    font-size: 1.5rem;
+    padding: 1.5rem;
+  }
+
+  .contact-text h2 {
+    font-size: 3rem;
+  }
+
+  .contact-text p {
     font-size: 1.5rem;
     line-height: 3rem;
-  
   }
-
-  .why-choose-us {
-    margin: 5%;
-    border-radius: 10px;
-  }
-
-
-  .overlay p {
-    font-size: 1.5rem;
-    line-height: 3.2rem;
-  }
-
-  .overlay h2 {
-    font-size: 3rem;
-    margin-bottom: 5rem;
-
-  }
-
-  .overlay h4 {
-    font-size: 2.5rem;
-    line-height: 3.2rem;
-  }
-
-  .why-card img {
-    height: auto;
-    width: 5rem;
-  }
-
-  .card1 img.headshot-icon {
-    height: auto;
-    width: 10rem;
-  }
-
 }
